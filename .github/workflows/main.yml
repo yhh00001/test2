@@ -1,0 +1,21 @@
+name: FTP Deploy
+on:
+  push:
+    branches:
+      - main # or main, depending on your default branch
+
+jobs:
+  ftp-deploy:
+    name: Deploy to FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftpupload.net
+          username: if0_35578619
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: htdocs/
